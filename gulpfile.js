@@ -45,7 +45,15 @@ gulp.task('server', () => {
   });
 
   gulp.watch('./src/scss/**/*.scss', gulp.series('css'))
+  gulp.watch('./src/**/*.js', gulp.series('copy-hw_2'))
   gulp.watch('./src/**/*.html', gulp.series('html'))
+})
+
+gulp.task('copy-hw_2', () => {
+  return gulp.src([
+    './src/hw_2/**/*.*'
+  ])
+  .pipe(gulp.dest('./build/hw_2/'))
 })
 
 gulp.task('copy-images', () => {
@@ -72,5 +80,5 @@ gulp.task('optimization-images', () => {
   .pipe(gulp.dest('./build/images'))
 })
 
-gulp.task("start", gulp.series('clean', 'html', 'css', 'copy-images', 'copy-fonts', 'server'))
-gulp.task("finish", gulp.series('clean', 'html', 'css', 'copy-images', 'copy-fonts', 'optimization-images'))
+gulp.task("start", gulp.series('clean', 'html', 'css', 'copy-hw_2', 'copy-images', 'copy-fonts', 'server'))
+gulp.task("finish", gulp.series('clean', 'html', 'css', 'copy-hw_2', 'copy-images', 'copy-fonts', 'optimization-images'))

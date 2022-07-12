@@ -7,5 +7,3 @@ const year = 2022;
 let age = year - userAge;
 
 console.log('User: ' + userName + ' ' + userSurname + ', ' + age + ' years old;');
-
-1111

@@ -7,8 +7,8 @@ const rename = require('gulp-rename');
 const del = require('del');
 const htmlmin = require('gulp-htmlmin');
 const server = require('browser-sync').create();
-const imagemin = require('gulp-imagemin');
-const imageminJpegtran = require('imagemin-jpegtran');
+// const imagemin = require('gulp-imagemin');
+// const imageminJpegtran = require('imagemin-jpegtran');
 
 gulp.task('css', () => {
   return gulp.src('./src/scss/**/*.scss')
@@ -70,15 +70,15 @@ gulp.task('copy-fonts', () => {
   .pipe(gulp.dest('./build/fonts/'))
 })
 
-gulp.task('optimization-images', () => {
-  return gulp.src('./build/images/**/*.*')
-  .pipe(imagemin([
-    imagemin.optipng({ optimizationLevel: 3 }),
-    imagemin.svgo({ plugins: [ {cleanupIDs: false}] }),
-    imageminJpegtran({ progressive: true })
-  ]))
-  .pipe(gulp.dest('./build/images'))
-})
+// gulp.task('optimization-images', () => {
+//   return gulp.src('./build/images/**/*.*')
+//   .pipe(imagemin([
+//     imagemin.optipng({ optimizationLevel: 3 }),
+//     imagemin.svgo({ plugins: [ {cleanupIDs: false}] }),
+//     imageminJpegtran({ progressive: true })
+//   ]))
+//   .pipe(gulp.dest('./build/images'))
+// })
 
 gulp.task("start", gulp.series('clean', 'html', 'css', 'copy-homeWork', 'copy-images', 'copy-fonts', 'server'))
-gulp.task("finish", gulp.series('clean', 'html', 'css', 'copy-homeWork', 'copy-images', 'copy-fonts', 'optimization-images'))
+gulp.task("finish", gulp.series('clean', 'html', 'css', 'copy-homeWork', 'copy-images', 'copy-fonts'))
